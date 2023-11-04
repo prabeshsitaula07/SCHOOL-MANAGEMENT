@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enroll Student</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <a href="{{ url_for('home') }}" class="home-button">Home</a>
+    <div class="container">
+        <h1>Enroll Student in Course</h1>
+        <form method="POST" action="/enroll_student">
+            <label for="student_name">Select a student:</label>
+            <select id="student_name" name="student_name" required>
+                {% for student in students %}
+                    <option value="{{ student.name }}">{{ student.name }}</option>
+                {% endfor %}
+            </select><br>
+            <label for="course_name">Select a course:</label>
+            <select id="course_name" name="course_name" required>
+                {% for course in courses %}
+                    <option value="{{ course.name }}">{{ course.name }}</option>
+                {% endfor %}
+            </select><br>
+            <button type="submit">Enroll Student</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Course's Students</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <a href="{{ url_for('home') }}" class="home-button">Home</a>
+    <div class="container">
+        <h1>Course's Students</h1>
+        <form method="POST" action="/display_course_students">
+            <label for="course_name">Select a course:</label>
+            <select id="course_name" name="course_name" required>
+                <option value="">Select a course</option>
+                {% for course in courses %}
+                <option value="{{ course.name }}">{{ course.name }}</option>
+                {% endfor %}
+            </select><br>   <button type="submit">Display Students</button>
+            <h2>Selected Course: {{ selected_course.name }}</h2>
+
+            
+        </form>
+
+        <h2>Students Enrolled:</h2>
+        <ul>
+            {% if selected_course and selected_course.students %}
+            {% for student in selected_course.students %}
+            <li>{{ student.name }}</li>
+            {% endfor %}
+            {% else %}
+            <li>No students enrolled in the selected course.</li>
+            {% endif %}
+        </ul>
+        
+    </div>
+</body>
+
+</html>
