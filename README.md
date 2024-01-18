@@ -26,9 +26,12 @@ To run this web application on your local machine, follow these steps:
    git clone https://github.com/prabeshsitaula07/SCHOOL-MANAGEMENT.git
    cd SCHOOL-MANAGEMENT
 2. Install dependencies
+   ```bash
    pip install -r requirements.txt
-3. Start application
+4. Start application
+   ```bash
    python app.py
+   ```
    The web app will be accessible at http://localhost:5000 in your web browser.
 
 ## Usage
