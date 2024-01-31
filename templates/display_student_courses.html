@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Student's Courses</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-
-</head>
-
-<body>
-    <a href="{{ url_for('home') }}" class="home-button">Home</a>
+{% extends 'layout.html' %}
+{% block body %}
     <div class="container">
         <h1>Student's Courses</h1>
         <form method="POST" action="/display_student_courses">
@@ -37,6 +28,4 @@
             {% endif %}
         </ul>
     </div>
-</body>
-
-</html>
+    {% endblock %}

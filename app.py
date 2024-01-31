@@ -66,6 +66,7 @@ def home():
 
 @app.route('/add_student', methods=['GET', 'POST'])
 def add_student():
+    title = request.args.get("title", "Add Student")
     if request.method == 'POST':
         name = request.form['name']
         age = int(request.form['age'])
@@ -73,20 +74,22 @@ def add_student():
         student = Student(name, age, grade)
         students.append(student)
         return redirect(url_for('home'))
-    return render_template('add_student.html')
+    return render_template('add_student.html',title=title)
 
 @app.route('/add_course', methods=['GET', 'POST'])
 def add_course():
+    title = request.args.get("title", "Add Course")
     if request.method == 'POST':
         name = request.form['name']
         instructor = request.form['instructor']
         course = Course(name, instructor)
         courses.append(course)
         return redirect(url_for('home'))
-    return render_template('add_course.html')
+    return render_template('add_course.html', title=title)
 
 @app.route('/enroll_student', methods=['GET', 'POST'])
 def enroll_student():
+    title = request.args.get("title", "Enroll Student")
     if request.method == 'POST':
         student_name = request.form['student_name']
         course_name = request.form['course_name']
@@ -102,11 +105,12 @@ def enroll_student():
 
         return redirect(url_for('home'))
 
-    return render_template('enroll_student.html', students=students, courses=courses)
+    return render_template('enroll_student.html', students=students, courses=courses, title=title)
 
 
 @app.route('/remove_student', methods=['GET', 'POST'])
 def remove_student():
+    title = request.args.get("title", "Remove Student")
     if request.method == 'POST':
         student_name = request.form['student_name']
         course_name = request.form['course_name']
@@ -116,22 +120,25 @@ def remove_student():
             course.remove_student(student)
             student.drop_course(course)  # Pass the 'course' object, not just the name
         return redirect(url_for('home'))
-    return render_template('remove_student.html', students=students, courses=courses)
+    return render_template('remove_student.html', students=students, courses=courses, title=title)
 
 @app.route('/display_student_courses', methods=['GET', 'POST'])
 def display_student_courses():
+    title = request.args.get("title", "Display Student Course")
     if request.method == 'POST':
         student_name = request.form['student_name']
         student = next((s for s in students if s.name == student_name), None)
 
         if student:
-            return render_template('display_student_courses.html', student=student, students=students)
+            return render_template('display_student_courses.html', student=student, students=students, title=title)
         else:
             flash("Student not found.")
 
-    return render_template('display_student_courses.html', students=students)
+    return render_template('display_student_courses.html', students=students, title=title)
+
 @app.route('/display_course_students', methods=['GET', 'POST'])
 def display_course_students():
+    title = request.args.get("title", "Display Course Student")
     selected_course = None  # Initialize with None in case no course is selected
     if request.method == 'POST':
         course_name = request.form['course_name']
@@ -141,12 +148,12 @@ def display_course_students():
         print("Selected Course:", selected_course)
 
         if selected_course:
-            return render_template('display_course_students.html', selected_course=selected_course, courses=courses)
+            return render_template('display_course_students.html', selected_course=selected_course, courses=courses, title=title)
         else:
             flash("Course not found.")
 
     # Pass the list of courses to the template for course selection
-    return render_template('display_course_students.html', courses=courses, selected_course=selected_course)
+    return render_template('display_course_students.html', courses=courses, selected_course=selected_course, title=title)
 
 
 if __name__ == '__main__':

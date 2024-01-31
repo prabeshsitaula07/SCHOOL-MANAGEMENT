@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Add Course</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <a href="{{ url_for('home') }}" class="home-button">Home</a>
+{% extends 'layout.html' %}
+{% block body %}
     <div class="container">
         <h1>Add Course</h1>
         <form method="POST" action="/add_course">
@@ -16,5 +10,5 @@
             <button type="submit">Add Course</button>
         </form>
     </div>
-</body>
-</html>
+
+    {% endblock %}

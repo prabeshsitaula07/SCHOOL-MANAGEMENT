@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Course's Students</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-</head>
-
-<body>
-    <a href="{{ url_for('home') }}" class="home-button">Home</a>
+{% extends 'layout.html' %}
+{% block body %}
     <div class="container">
         <h1>Course's Students</h1>
         <form method="POST" action="/display_course_students">
@@ -35,6 +27,4 @@
         </ul>
         
     </div>
-</body>
-
-</html>
+    {% endblock %}

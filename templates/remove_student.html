@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Remove Student from Course</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <a href="{{ url_for('home') }}" class="home-button">Home</a>
+{% extends 'layout.html' %}
+{% block body %}
     <div class="container">
         <h1>Remove Student from Course</h1>
         <form method="POST" action="/remove_student">
@@ -24,5 +18,4 @@
             <button type="submit">Remove Student</button>
         </form>
     </div>
-</body>
-</html>
+    {% endblock %}
